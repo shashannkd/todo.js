@@ -7,11 +7,14 @@ class Task {
     this.dueDate = dueDate;
     this.isDone = isDone;
   }
-
   toString() {
-    let htmlText = '<li class="task" ><div>';
+    let htmlText = '<li class="task"><div>';
     htmlText += this.taskName + " " + this.dueDate;
-    htmlText += '<input type="checkbox" name="isDone" id="isDone">';
+    htmlText += '<input type="checkbox" name="isDone" id = "';
+    htmlText += this.taskId + '"';
+    htmlText += 'onclick = "checkboxChange(';
+    htmlText += this.taskId;
+    htmlText += ')" id="isDone">';
     htmlText += '<button onclick="deleteTask(';
     htmlText += this.taskId;
     htmlText += ')">Delete</button>';
@@ -45,6 +48,7 @@ function deleteTask(taskId) {
 function createTask() {
   let taskName = document.getElementById("taskName").value;
   let dueDate = document.getElementById("dueDate").value;
+
   if (validateDueDate(dueDate)) {
     addTask(new Task(taskName, dueDate, false));
   } else {
@@ -62,6 +66,8 @@ function createTask() {
 }
 
 function addTask(t) {
+  document.getElementById("taskName").value = "";
+  document.getElementById("dueDate").value = "";
   taskList.push(t);
   // Call a web api to update the database on the server
   render();
@@ -77,6 +83,14 @@ function validateDueDate(dueDate) {
   );
   if (parsedDueDate >= today) return true;
   return false;
+}
+function checkboxChange(taskId) {
+  let changedTask = document.getElementById(String(taskId));
+  if (changedTask.checked) {
+    changedTask.parentElement.setAttribute("id", "completed");
+  } else {
+    changedTask.parentElement.setAttribute("id", "");
+  }
 }
 
 function init() {
