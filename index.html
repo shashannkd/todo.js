@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
     <title>TODO App</title>
 </head>
 
 <body>
-    <ol>
+    <header>
+        <h1>Tasks for the day</h1>
+    </header>
+    <ul>
         <div id="todolist"></div>
-    </ol>
+    </ul>
     <input type="text" name="taskName" id="taskName">
+    <input type="date" name="dueDate" id="dueDate">
+
     <button onclick="createTask()">Add Task</button>
+
     <script src="todo-app.js"></script>
 </body>
 
