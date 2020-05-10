@@ -12,6 +12,10 @@ html body header p {
   color: #030657;
 }
 
+html body li.task {
+  list-style-type: none;
+}
+
 html body li.task div {
   font-size: 25px;
 }
