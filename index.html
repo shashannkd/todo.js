@@ -8,13 +8,13 @@
 
 <body>
     <header>
-        <h1>Tasks for the day</h1>
+        <p>Tasks for Today</p>
     </header>
     <ul>
         <div id="todolist"></div>
     </ul>
-    <input type="text" name="taskName" id="taskName">
-    <input type="date" name="dueDate" id="dueDate">
+    <input type="text" name="taskName" id="taskName" placeholder="Enter the task name" required>
+    <input type="date" name="dueDate" id="dueDate" required>
 
     <button onclick="createTask()">Add Task</button>
 

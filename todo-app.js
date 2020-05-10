@@ -9,7 +9,7 @@ class Task {
   }
   toString() {
     let htmlText = '<li class="task"><div>';
-    htmlText += this.taskName + " " + this.dueDate;
+    htmlText += "<h2>" + this.taskName + "</h2>" + "is due on " + this.dueDate;
     htmlText += '<input type="checkbox" name="isDone" id = "';
     htmlText += this.taskId + '"';
     htmlText += 'onclick = "checkboxChange(';
@@ -23,30 +23,8 @@ class Task {
   }
 }
 
-function render() {
-  const listUI = document.getElementById("todolist");
-  listUI.innerHTML = "";
-  // Get taskList from an API call
-
-  if (taskList.length === 0) listUI.innerHTML = "No tasks todo :)";
-  taskList.forEach((task) => {
-    listUI.innerHTML += task.toString();
-  });
-}
-
-function deleteTask(taskId) {
-  taskList = taskList.filter((t) => {
-    if (t.taskId != taskId) return t;
-  });
-  // call a web api to update the database on the server
-
-  // update the DOM
-  render();
-  console.log(taskList);
-}
-
 function createTask() {
-  let taskName = document.getElementById("taskName").value;
+  let taskName = document.getElementById("taskName").value.trim();
   let dueDate = document.getElementById("dueDate").value;
 
   if (validateDueDate(dueDate)) {
@@ -74,6 +52,28 @@ function addTask(t) {
   console.log(taskList);
 }
 
+function deleteTask(taskId) {
+  taskList = taskList.filter((t) => {
+    if (t.taskId != taskId) return t;
+  });
+  // call a web api to update the database on the server
+
+  // update the DOM
+  render();
+  console.log(taskList);
+}
+
+function render() {
+  const listUI = document.getElementById("todolist");
+  listUI.innerHTML = "";
+  // Get taskList from an API call
+
+  if (taskList.length === 0) listUI.innerHTML = "<h3>No tasks todo :)</h3>";
+  taskList.forEach((task) => {
+    listUI.innerHTML += task.toString();
+  });
+}
+
 function validateDueDate(dueDate) {
   today = new Date();
   parsedDueDate = new Date(
@@ -86,10 +86,13 @@ function validateDueDate(dueDate) {
 }
 function checkboxChange(taskId) {
   let changedTask = document.getElementById(String(taskId));
+  let thisTask = taskList.filter((t) => t.taskId === taskId);
   if (changedTask.checked) {
     changedTask.parentElement.setAttribute("id", "completed");
+    thisTask.isDone = true;
   } else {
     changedTask.parentElement.setAttribute("id", "");
+    thisTask.isDone = false;
   }
 }
 

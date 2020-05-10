@@ -1,8 +1,51 @@
 html body {
+  background-image: url("./images/two.jpg");
+  background-size: cover;
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html body header p {
+  margin-top: 70px;
+  font-size: 50px;
+  font-weight: 600;
+  color: #030657;
+}
+
+html body li.task div {
+  font-size: 25px;
+}
+
+html body li.task div h2 {
+  display: inline;
+  padding: 10px;
 }
 
 html body li.task div#completed {
   text-decoration: line-through;
+}
+
+html body input#taskName, html body input#dueDate {
+  padding: 10px;
+  margin: 5px;
+  height: 25px;
+  width: 200px;
+  border-radius: 5px;
+  border-bottom: 2px solid black;
+}
+
+html body input#taskName:focus, html body input#dueDate:focus {
+  height: 25px;
+  width: 200px;
+  background-color: #222222;
+  color: #cccccc;
+}
+
+html body button {
+  padding: 10px;
+  border-radius: 5px;
+  color: #cccccc;
+  background-color: #030657;
+  font-weight: 600;
 }
 /*# sourceMappingURL=style.css.map */
