@@ -86,7 +86,7 @@ function validateDueDate(dueDate) {
 }
 function checkboxChange(taskId) {
   let changedTask = document.getElementById(String(taskId));
-  let thisTask = taskList.filter((t) => t.taskId === taskId);
+  let thisTask = taskList.find((t) => t.taskId === taskId);
   if (changedTask.checked) {
     changedTask.parentElement.setAttribute("id", "completed");
     thisTask.isDone = true;
