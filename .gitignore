@@ -1,1 +1,3 @@
-style.scss
+assets/css/style.scss
+node_modules/
+assets/css/style.css.map
