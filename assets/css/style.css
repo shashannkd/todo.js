@@ -1,32 +1,32 @@
 html body {
-  background-image: url("./images/two.jpg");
+  background-image: url("/assets/img/two.jpg");
   background-size: cover;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 html body header p {
-  margin-top: 70px;
+  margin-top: 80px;
   font-size: 50px;
   font-weight: 600;
-  color: #030657;
+  color: #353ab8;
 }
 
-html body li.task {
-  list-style-type: none;
-}
-
-html body li.task div {
+html body table#todolist {
   font-size: 25px;
+  text-align: center;
 }
 
-html body li.task div h2 {
-  display: inline;
+html body table#todolist tr.task {
   padding: 10px;
 }
 
-html body li.task div#completed {
+html body table#todolist tr.task.completed {
   text-decoration: line-through;
+}
+
+html body table#todolist tr.task td {
+  padding: 20px;
 }
 
 html body input#taskName, html body input#dueDate {
@@ -48,8 +48,14 @@ html body input#taskName:focus, html body input#dueDate:focus {
 html body button {
   padding: 10px;
   border-radius: 5px;
+  height: 50px;
   color: #cccccc;
-  background-color: #030657;
-  font-weight: 600;
+  background-color: #353ab8;
+  font-weight: 700;
+}
+
+html body button:hover {
+  color: #fff;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
