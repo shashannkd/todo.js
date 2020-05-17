@@ -1,7 +1,7 @@
 function Task(props) {
   return (
     <li>
-      {props.name}, {props.dueDate.toLocaleTimeString()}
+      {props.name}, {props.dueDate}
     </li>
   );
 }
@@ -48,8 +48,8 @@ class TaskNameForm extends React.Component {
     event.preventDefault();
     const task = {
       id: Date.now(),
-      name: this.state.value,
-      dueDate: new Date(),
+      name: this.state.name,
+      dueDate: this.state.dueDate,
     };
     // add the task object to the task list
     this.props.onAddTask(task);
@@ -57,16 +57,28 @@ class TaskNameForm extends React.Component {
 
   handleChange(event) {
     // code to set the state of the component
-    this.setState({ value: event.target.value });
+    this.setState({
+      name: event.target.value,
+    });
   }
+  validateDate = (e) => {
+    this.setState({
+      dueDate: event.target.value,
+    });
+  };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          value={this.state.value}
+          value={this.state.name}
           onChange={this.handleChange}
+        />
+        <input
+          type="date"
+          value={this.state.value}
+          onChange={this.validateDate}
         />
         <input type="submit" value="Add Task" />
       </form>
