@@ -12,3 +12,4 @@ web-report/
 
 # macOS
 .DS_Store
+todo-native/.expo/settings.json
