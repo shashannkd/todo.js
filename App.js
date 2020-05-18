@@ -6,6 +6,9 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
+  Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 
 import Header from "./components/header";
@@ -13,20 +16,21 @@ import ToDoItem from "./components/todoItem";
 import ToDoForm from "./components/addTaskForm";
 
 export default function App() {
-  const [tasks, setTasks] = useState([
-    { id: 1, name: "Task One" },
-    { id: 2, name: "Task 2" },
-    { id: 3, name: "Task 3" },
-    { id: 4, name: "Task 4" },
-    { id: 5, name: "Task 5" },
-    { id: 6, name: "Task 6" },
-    { id: 7, name: "Task 7" },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const submitHandler = (text) => {
-    setTasks((prevTasks) => {
-      return [{ id: Math.random(), name: text }, ...prevTasks];
-    });
+    if (text.length > 3) {
+      setTasks((prevTasks) => {
+        return [{ id: Math.random(), name: text }, ...prevTasks];
+      });
+    } else {
+      Alert.alert("OOPS", "Task Name must be atleast 4 letters long", [
+        {
+          text: "OK, I Understand.",
+          onPress: () => console.log("Alert Closed"),
+        },
+      ]);
+    }
   };
 
   const deleteTask = (id) => {
@@ -37,21 +41,28 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <ToDoForm submitHandler={submitHandler} />
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+        console.log("Keyboard Dismissed.");
+      }}
+    >
+      <View style={styles.container}>
+        <Header />
         <View style={styles.content}>
-          <FlatList
-            keyExtractor={(item) => item.id}
-            data={tasks}
-            renderItem={({ item }) => (
-              <ToDoItem item={item} deleteTask={deleteTask} />
-            )}
-          />
+          <ToDoForm submitHandler={submitHandler} />
+          <View style={styles.content}>
+            <FlatList
+              keyExtractor={(item) => item.id}
+              data={tasks}
+              renderItem={({ item }) => (
+                <ToDoItem item={item} deleteTask={deleteTask} />
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
